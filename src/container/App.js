@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import {robots} from '../components/robots.js'
+import {robots} from '../components/robots.js'
 import SearchBox from '../components/SearchBox'
 import CardsList from '../components/CardsList'
 import Scroll from '../components/Scroll'
@@ -15,14 +15,15 @@ function App()
 
     // }
 
-    const [robots,setRobot] = useState([])
+    const [myrobots,setRobot] = useState([])
     const [searchField,setSearchField] = useState('')
 
 
     useEffect(()=>{
-        fetch('http://jsonplaceholder.typicode.com/users')
-        .then(response => response.json())
-        .then(users => {setRobot(users)});
+        // fetch('http://jsonplaceholder.typicode.com/users')
+        // .then(response => response.json())
+        // .then(users => {setRobot(users)});
+        setRobot(robots)
     },[])
 
     const onSearchChange = (event) =>
@@ -30,7 +31,7 @@ function App()
         setSearchField(event.target.value) 
     }
 
-    const searchList = robots.filter(robot => {
+    const searchList = myrobots.filter(robot => {
     return robot.username.toLowerCase().includes(searchField.toLowerCase())
     })
 
